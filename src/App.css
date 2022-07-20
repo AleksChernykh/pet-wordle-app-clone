@@ -38,7 +38,8 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  color: #fff;
   height: 3.25rem;
   width: 3.25rem;
   margin: 2px;
@@ -75,4 +76,16 @@ h1 {
 
 .big-key {
   width: 69px;
+}
+
+.correct {
+  background-color: #6aaa64;
+}
+
+.contains {
+  background-color: #c9b458;
+}
+
+.absent {
+  background-color: #787c7e;
 }

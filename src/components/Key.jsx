@@ -5,16 +5,16 @@ import { AppContext } from '../App';
 import '../App.css';
 
 const Key = ({ keyVal, bigKey }) => {
-  const { board, setBoard, currAttempt, setCurrAttempt } =
-    useContext(AppContext);
+  const { onSelectLetter, onDelete, onEnter } = useContext(AppContext);
 
   const selectLetterHandler = () => {
-    if (currAttempt.currPos > 4) return;
-
-    const newBoard = [...board];
-    newBoard[currAttempt.attempt][currAttempt.currPos] = keyVal;
-    setBoard(newBoard);
-    setCurrAttempt({ ...currAttempt, currPos: currAttempt.currPos + 1 });
+    if (keyVal === 'enter') {
+      onEnter();
+    } else if (keyVal === 'delete') {
+      onDelete();
+    } else {
+      onSelectLetter(keyVal);
+    }
   };
 
   return (
