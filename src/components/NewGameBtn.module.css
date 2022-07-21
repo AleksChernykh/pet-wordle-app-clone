@@ -1,0 +1,60 @@
+.start__game {
+  display: block;
+  margin: 15px auto 0;
+  padding: 0 20px;
+  line-height: 2rem;
+  font-size: 1.1rem;
+  font-weight: 300;
+  background-color: #fff;
+  border: 1px solid #787c7e;
+  border-radius: 6px;
+  transition: 0.3s all;
+  cursor: pointer;
+}
+
+.start__game:hover {
+  transform: scale(1.06);
+}
+
+#gradient {
+  background: linear-gradient(130deg, #e6bd03, #ffffff, #52d605);
+  background-size: 200% 200%;
+
+  -webkit-animation: Animation 5s ease infinite;
+  -moz-animation: Animation 5s ease infinite;
+  animation: Animation 5s ease infinite;
+}
+
+@-webkit-keyframes Animation {
+  0% {
+    background-position: 10% 0%;
+  }
+  50% {
+    background-position: 96% 100%;
+  }
+  100% {
+    background-position: 10% 0%;
+  }
+}
+@-moz-keyframes Animation {
+  0% {
+    background-position: 10% 0%;
+  }
+  50% {
+    background-position: 96% 100%;
+  }
+  100% {
+    background-position: 10% 0%;
+  }
+}
+@keyframes Animation {
+  0% {
+    background-position: 10% 0%;
+  }
+  50% {
+    background-position: 96% 100%;
+  }
+  100% {
+    background-position: 10% 0%;
+  }
+}

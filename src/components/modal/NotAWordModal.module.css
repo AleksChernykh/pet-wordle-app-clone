@@ -1,0 +1,36 @@
+.not_word {
+  position: fixed;
+  top: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 20vw;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  background-color: black;
+  color: white;
+  opacity: 0;
+  transition: 0.3s all;
+
+  animation-name: myAnimation;
+  animation-duration: 1200ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes myAnimation {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}

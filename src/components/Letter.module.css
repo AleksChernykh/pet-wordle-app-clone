@@ -1,0 +1,57 @@
+.letter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  color: #000;
+  height: 3.25rem;
+  width: 3.25rem;
+  margin: 2px;
+  border: 2px solid #d3d6da;
+  text-transform: uppercase;
+}
+
+.correct {
+  background-color: #6aaa64;
+  color: #fff;
+}
+
+.present {
+  background-color: #c9b458;
+  color: #fff;
+}
+
+.absent {
+  background-color: #787c7e;
+  color: #fff;
+}
+
+.shake_letters {
+  animation: shake 0.72s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

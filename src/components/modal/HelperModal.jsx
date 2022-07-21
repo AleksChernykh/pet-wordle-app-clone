@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 
 import { AppContext } from '../../App';
+import NewGameBtn from '../NewGameBtn';
 
-import classes from './Modal.module.css';
+import classes from './HelperModal.module.css';
 
-const Modal = () => {
+const HelperModal = () => {
   const { modalActive, setModalActive } = useContext(AppContext);
 
   const modalClasses = modalActive
@@ -74,16 +75,10 @@ const Modal = () => {
           </p>
         </div>
         <hr />
-        <button
-          className={classes.start__game}
-          id={classes.gradient}
-          onClick={() => window.location.reload()}
-        >
-          Start New Game
-        </button>
+        <NewGameBtn />
       </div>
     </div>
   );
 };
 
-export default Modal;
+export default HelperModal;

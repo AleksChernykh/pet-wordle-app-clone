@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import { AppContext } from '../App';
 
-import '../App.css';
+import classes from './Key.module.css';
 
 const Key = ({ keyVal, bigKey, absent, present, correct }) => {
   const { onSelectLetter, onDelete, onEnter } = useContext(AppContext);
@@ -19,14 +19,14 @@ const Key = ({ keyVal, bigKey, absent, present, correct }) => {
 
   return (
     <div
-      className={`key ${
+      className={`${classes.key} ${
         bigKey
-          ? 'big-key'
+          ? classes.big_key
           : absent
-          ? 'absent'
+          ? classes.absent
           : present
-          ? 'present'
-          : correct && 'correct'
+          ? classes.present
+          : correct && classes.correct
       }`}
       onClick={selectLetterHandler}
     >

@@ -1,9 +1,9 @@
 import React, { useEffect, useCallback, useContext } from 'react';
 
 import { AppContext } from '../App';
-
-import '../App.css';
 import Key from './Key';
+
+import classes from './Keyboard.module.css';
 
 const Keyboard = () => {
   const {
@@ -46,8 +46,8 @@ const Keyboard = () => {
   }, [keyDownHandler]);
 
   return (
-    <div className='keyboard' onKeyDown={keyDownHandler}>
-      <div className='keyboard-row'>
+    <div className={classes.keyboard} onKeyDown={keyDownHandler}>
+      <div className={classes.keyboard_row}>
         {keys1.map((key) => (
           <Key
             keyVal={key}
@@ -57,7 +57,7 @@ const Keyboard = () => {
           />
         ))}
       </div>
-      <div className='keyboard-row'>
+      <div className={classes.keyboard_row}>
         {keys2.map((key) => (
           <Key
             keyVal={key}
@@ -67,7 +67,7 @@ const Keyboard = () => {
           />
         ))}
       </div>
-      <div className='keyboard-row'>
+      <div className={classes.keyboard_row}>
         <Key keyVal={'enter'} bigKey />
         {keys3.map((key) => (
           <Key

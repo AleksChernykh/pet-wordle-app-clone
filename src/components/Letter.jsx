@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 
 import { AppContext } from '../App';
 
-import '../App.css';
+import classes from './Letter.module.css';
 
 const Letter = ({ letterPos, attemptVal }) => {
   const {
@@ -12,6 +12,7 @@ const Letter = ({ letterPos, attemptVal }) => {
     setAbsentLetters,
     setPresentLetters,
     setCorrectLetters,
+    notAWord,
   } = useContext(AppContext);
 
   const letter = board[attemptVal][letterPos];
@@ -21,7 +22,10 @@ const Letter = ({ letterPos, attemptVal }) => {
 
   const letterState =
     currAttempt.attempt > attemptVal &&
-    (correct ? 'correct' : present ? 'present' : 'absent');
+    (correct ? classes.correct : present ? classes.present : classes.absent);
+
+  const letterShake =
+    currAttempt.attempt === attemptVal && notAWord && classes.shake_letters;
 
   useEffect(() => {
     if (letter !== '' && !correct && !present) {
@@ -33,7 +37,11 @@ const Letter = ({ letterPos, attemptVal }) => {
     }
   }, [currAttempt.attempt]);
 
-  return <div className={`letter ${letterState}`}>{letter}</div>;
+  return (
+    <div className={`${classes.letter} ${letterState} ${letterShake}`}>
+      {letter}
+    </div>
+  );
 };
 
 export default Letter;

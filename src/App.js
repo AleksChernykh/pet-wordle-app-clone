@@ -3,11 +3,12 @@ import { createContext, useEffect, useState } from 'react';
 import Board from './components/Board';
 import Keyboard from './components/Keyboard';
 import GameOver from './components/GameOver';
+import Nav from './components/Nav';
+import HelperModal from './components/modal/HelperModal';
+import NotAWordModal from './components/modal/NotAWordModal';
 import { boardDefault, getWordsSet } from './Helpers';
 
 import './App.css';
-import Nav from './components/Nav';
-import Modal from './components/modal/Modal';
 
 export const AppContext = createContext();
 
@@ -24,6 +25,7 @@ function App() {
     guessedRight: false,
   });
   const [modalActive, setModalActive] = useState(false);
+  const [notAWord, setNotAWord] = useState(false);
 
   useEffect(() => {
     getWordsSet().then((words) => {
@@ -51,7 +53,10 @@ function App() {
     if (newWordsSet.has(currWord)) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, currPos: 0 });
     } else {
-      alert('Word does not Exist');
+      setNotAWord(true);
+      setTimeout(() => {
+        setNotAWord(false);
+      }, 1200);
       return;
     }
 
@@ -88,6 +93,8 @@ function App() {
     correctWord,
     modalActive,
     setModalActive,
+    notAWord,
+    setNotAWord,
   };
 
   return (
@@ -98,7 +105,8 @@ function App() {
           <Board />
           {gameOver.gameOver ? <GameOver /> : <Keyboard />}
         </div>
-        <Modal />
+        {notAWord && <NotAWordModal />}
+        <HelperModal />
       </AppContext.Provider>
     </div>
   );
