@@ -1,6 +1,8 @@
 * {
-  font-family: 'Kanit', sans-serif;
+  font-family: 'Kanit', 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+    sans-serif;
   box-sizing: border-box;
+  margin-top: 0;
 }
 
 .App {
@@ -14,20 +16,15 @@
   max-width: 500px;
 }
 
-.header {
-  height: 50px;
-  border-bottom: 1px solid #000;
-}
-
 h1 {
-  margin: 6px auto;
+  margin: 0 auto;
 }
 
 .board {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 10px;
+  padding: 30px 0;
 }
 
 .row {
@@ -39,7 +36,7 @@ h1 {
   justify-content: center;
   align-items: center;
   font-size: 1.8rem;
-  color: #fff;
+  color: #000;
   height: 3.25rem;
   width: 3.25rem;
   margin: 2px;
@@ -80,12 +77,20 @@ h1 {
 
 .correct {
   background-color: #6aaa64;
+  color: #fff;
 }
 
-.contains {
+.present {
   background-color: #c9b458;
+  color: #fff;
 }
 
 .absent {
   background-color: #787c7e;
+  color: #fff;
+}
+
+.gameOver {
+  line-height: 20px;
+  letter-spacing: 1px;
 }

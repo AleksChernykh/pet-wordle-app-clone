@@ -4,7 +4,7 @@ import { AppContext } from '../App';
 
 import '../App.css';
 
-const Key = ({ keyVal, bigKey }) => {
+const Key = ({ keyVal, bigKey, absent, present, correct }) => {
   const { onSelectLetter, onDelete, onEnter } = useContext(AppContext);
 
   const selectLetterHandler = () => {
@@ -19,7 +19,15 @@ const Key = ({ keyVal, bigKey }) => {
 
   return (
     <div
-      className={bigKey ? 'key big-key' : 'key'}
+      className={`key ${
+        bigKey
+          ? 'big-key'
+          : absent
+          ? 'absent'
+          : present
+          ? 'present'
+          : correct && 'correct'
+      }`}
       onClick={selectLetterHandler}
     >
       {keyVal}

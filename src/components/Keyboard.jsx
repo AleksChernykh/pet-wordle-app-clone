@@ -6,7 +6,14 @@ import '../App.css';
 import Key from './Key';
 
 const Keyboard = () => {
-  const { onSelectLetter, onDelete, onEnter } = useContext(AppContext);
+  const {
+    onSelectLetter,
+    onDelete,
+    onEnter,
+    absentLetters,
+    presentLetters,
+    correctLetters,
+  } = useContext(AppContext);
 
   const keys1 = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'];
   const keys2 = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'];
@@ -42,18 +49,33 @@ const Keyboard = () => {
     <div className='keyboard' onKeyDown={keyDownHandler}>
       <div className='keyboard-row'>
         {keys1.map((key) => (
-          <Key keyVal={key} />
+          <Key
+            keyVal={key}
+            absent={absentLetters.includes(key)}
+            present={presentLetters.includes(key)}
+            correct={correctLetters.includes(key)}
+          />
         ))}
       </div>
       <div className='keyboard-row'>
         {keys2.map((key) => (
-          <Key keyVal={key} />
+          <Key
+            keyVal={key}
+            absent={absentLetters.includes(key)}
+            present={presentLetters.includes(key)}
+            correct={correctLetters.includes(key)}
+          />
         ))}
       </div>
       <div className='keyboard-row'>
         <Key keyVal={'enter'} bigKey />
         {keys3.map((key) => (
-          <Key keyVal={key} />
+          <Key
+            keyVal={key}
+            absent={absentLetters.includes(key)}
+            present={presentLetters.includes(key)}
+            correct={correctLetters.includes(key)}
+          />
         ))}
         <Key keyVal={'delete'} bigKey />
       </div>

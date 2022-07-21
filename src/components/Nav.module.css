@@ -1,0 +1,18 @@
+.header {
+  position: relative;
+  height: 50px;
+  border-bottom: 1px solid #000;
+}
+
+.help {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 28px;
+  height: 28px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.help:hover {
+  transform: scale(1.2);
+}
