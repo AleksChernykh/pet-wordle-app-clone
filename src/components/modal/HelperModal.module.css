@@ -12,10 +12,15 @@
   pointer-events: none;
   transition: 0.5s;
 }
-
 .modal.active {
   opacity: 1;
   pointer-events: all;
+}
+#light {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+#dark {
+  background-color: rgba(61, 61, 61, 0.5);
 }
 
 .modal__content {
@@ -23,22 +28,27 @@
   max-height: calc(100vh - 15px);
   width: 50vw;
   border-radius: 6px;
-  background-color: #fff;
   font-size: 16px;
   font-weight: 300;
+  letter-spacing: 0.5px;
   text-align: left;
   overflow-y: auto;
   transform: scale(0.5);
   transition: 0.4s all;
 }
+.modal__content.active {
+  transform: scale(1);
+}
+#light .modal__content {
+  background-color: #fff;
+}
+#dark .modal__content {
+  background-color: #121213;
+  color: white;
+}
 
 h3 {
   text-align: center;
-  margin-bottom: 9px;
-}
-
-.modal__content.active {
-  transform: scale(1);
 }
 
 .header {
@@ -58,6 +68,14 @@ h3 {
   transform: rotate(90deg) scale(1.2);
 }
 
+p {
+  margin: 14px 0;
+}
+
+hr {
+  margin-bottom: 10px;
+}
+
 .help__word {
   margin-top: 10px;
 }
@@ -72,6 +90,15 @@ h3 {
   width: 2.5rem;
   margin: 2px;
   border: 2px solid #d3d6da;
+}
+#light .correct .present .absent {
+  border: 2px solid #d3d6da;
+  color: #000;
+}
+
+#dark .help__letter {
+  border: 2px solid #3a3a3c;
+  color: #fff;
 }
 
 .help__letter.correct {

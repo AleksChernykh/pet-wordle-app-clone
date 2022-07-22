@@ -6,7 +6,6 @@
   margin: 0 6px 0 0;
   height: 58px;
   border-radius: 4px;
-
   background-color: #d3d6da;
   text-transform: uppercase;
   cursor: pointer;
@@ -28,5 +27,30 @@
 
 .absent {
   background-color: #787c7e;
+  color: #fff;
+}
+
+#light .key {
+  background-color: #d3d6da;
+  color: #000;
+}
+
+#dark.key {
+  background-color: #818384;
+  color: #fff;
+}
+
+#dark.correct {
+  background-color: #6aaa64;
+  color: #fff;
+}
+
+#dark.present {
+  background-color: #c9b458;
+  color: #fff;
+}
+
+#dark.absent {
+  background-color: #3a3a3c;
   color: #fff;
 }

@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { AppContext } from '../../App';
 
 import classes from './NotAWordModal.module.css';
 
 const NotAWordModal = () => {
-  return <div className={classes.not_word}>Not in word list</div>;
+  const { theme } = useContext(AppContext);
+
+  return (
+    <div className={classes.not_word} id={classes[theme]}>
+      Not in word list
+    </div>
+  );
 };
 
 export default NotAWordModal;

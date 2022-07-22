@@ -26,6 +26,7 @@ function App() {
   });
   const [modalActive, setModalActive] = useState(false);
   const [notAWord, setNotAWord] = useState(false);
+  const [theme, setTheme] = useState('light');
 
   useEffect(() => {
     getWordsSet().then((words) => {
@@ -74,6 +75,10 @@ function App() {
     setCurrAttempt({ ...currAttempt, currPos: currAttempt.currPos - 1 });
   };
 
+  const themeToggle = () => {
+    setTheme((curr) => (curr === 'light' ? 'dark' : 'light'));
+  };
+
   const providerValues = {
     board,
     setBoard,
@@ -95,11 +100,13 @@ function App() {
     setModalActive,
     notAWord,
     setNotAWord,
+    theme,
+    themeToggle,
   };
 
   return (
-    <div className='App'>
-      <AppContext.Provider value={providerValues}>
+    <AppContext.Provider value={providerValues}>
+      <div className='App' id={theme}>
         <Nav />
         <div className='game'>
           <Board />
@@ -107,8 +114,8 @@ function App() {
         </div>
         {notAWord && <NotAWordModal />}
         <HelperModal />
-      </AppContext.Provider>
-    </div>
+      </div>
+    </AppContext.Provider>
   );
 }
 

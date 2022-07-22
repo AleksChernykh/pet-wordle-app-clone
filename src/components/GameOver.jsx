@@ -6,10 +6,10 @@ import NewGameBtn from './NewGameBtn';
 import classes from './GameOver.module.css';
 
 const GameOver = () => {
-  const { gameOver, correctWord, currAttempt } = useContext(AppContext);
+  const { gameOver, correctWord, currAttempt, theme } = useContext(AppContext);
 
   return (
-    <div className={classes.gameOver}>
+    <div className={classes.gameOver} id={classes[theme]}>
       <h3>{gameOver.guessedRight ? 'You Guessed Right!' : 'You failed!'}</h3>
       <h2>{`Correct Word Was: ${correctWord.toUpperCase()}`}</h2>
       <h3>

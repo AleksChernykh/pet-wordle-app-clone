@@ -5,7 +5,7 @@ import { AppContext } from '../App';
 import classes from './Key.module.css';
 
 const Key = ({ keyVal, bigKey, absent, present, correct }) => {
-  const { onSelectLetter, onDelete, onEnter } = useContext(AppContext);
+  const { onSelectLetter, onDelete, onEnter, theme } = useContext(AppContext);
 
   const selectLetterHandler = () => {
     if (keyVal === 'enter') {
@@ -28,6 +28,7 @@ const Key = ({ keyVal, bigKey, absent, present, correct }) => {
           ? classes.present
           : correct && classes.correct
       }`}
+      id={classes[theme]}
       onClick={selectLetterHandler}
     >
       {keyVal}

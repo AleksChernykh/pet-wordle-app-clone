@@ -25,12 +25,22 @@
     opacity: 0;
   }
   10% {
-    opacity: 0.8;
+    opacity: 0.9;
   }
   80% {
-    opacity: 0.8;
+    opacity: 0.9;
   }
   100% {
     opacity: 0;
   }
+}
+
+#light {
+  background-color: black;
+  color: white;
+}
+
+#dark {
+  background-color: white;
+  color: black;
 }

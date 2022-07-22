@@ -13,6 +13,7 @@ const Letter = ({ letterPos, attemptVal }) => {
     setPresentLetters,
     setCorrectLetters,
     notAWord,
+    theme,
   } = useContext(AppContext);
 
   const letter = board[attemptVal][letterPos];
@@ -38,7 +39,10 @@ const Letter = ({ letterPos, attemptVal }) => {
   }, [currAttempt.attempt]);
 
   return (
-    <div className={`${classes.letter} ${letterState} ${letterShake}`}>
+    <div
+      className={`${classes.letter} ${letterState} ${letterShake}`}
+      id={classes[theme]}
+    >
       {letter}
     </div>
   );
