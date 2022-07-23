@@ -27,6 +27,7 @@ function App() {
   const [modalActive, setModalActive] = useState(false);
   const [notAWord, setNotAWord] = useState(false);
   const [theme, setTheme] = useState('light');
+  const [switchChecked, setSwitchChecked] = useState(false);
 
   useEffect(() => {
     getWordsSet().then((words) => {
@@ -34,6 +35,21 @@ function App() {
       setCorrectWord(words.todaysWord);
     });
   }, []);
+
+  useEffect(() => {
+    const themeData = window.localStorage.getItem('WORDLE_THEME');
+    if (themeData !== null) setTheme(JSON.parse(themeData));
+    const switchData = window.localStorage.getItem('WORDLE_SWITCH_CHECKED');
+    if (switchData !== null) setSwitchChecked(JSON.parse(switchData));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem('WORDLE_THEME', JSON.stringify(theme));
+    window.localStorage.setItem(
+      'WORDLE_SWITCH_CHECKED',
+      JSON.stringify(switchChecked)
+    );
+  }, [theme, switchChecked]);
 
   const onSelectLetter = (keyVal) => {
     if (currAttempt.currPos > 4) return;
@@ -77,6 +93,7 @@ function App() {
 
   const themeToggle = () => {
     setTheme((curr) => (curr === 'light' ? 'dark' : 'light'));
+    setSwitchChecked((curr) => (curr === true ? false : true));
   };
 
   const providerValues = {
@@ -102,6 +119,7 @@ function App() {
     setNotAWord,
     theme,
     themeToggle,
+    switchChecked,
   };
 
   return (

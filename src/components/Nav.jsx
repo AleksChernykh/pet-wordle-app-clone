@@ -6,7 +6,8 @@ import { AppContext } from '../App';
 import classes from './Nav.module.css';
 
 const Nav = () => {
-  const { setModalActive, theme, themeToggle } = useContext(AppContext);
+  const { setModalActive, theme, themeToggle, switchChecked } =
+    useContext(AppContext);
 
   return (
     <header className={classes.header} id={classes[theme]}>
@@ -28,7 +29,7 @@ const Nav = () => {
         </div>
         <ReactSwitch
           onChange={themeToggle}
-          checked={theme === 'dark'}
+          checked={switchChecked}
           offColor='#000'
         />
       </div>
