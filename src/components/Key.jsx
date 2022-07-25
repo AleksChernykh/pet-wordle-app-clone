@@ -28,7 +28,7 @@ const Key = ({ keyVal, bigKey, absent, present, correct }) => {
           ? classes.present
           : correct && classes.correct
       }`}
-      id={classes[theme]}
+      id={classes[theme.theme]}
       onClick={selectLetterHandler}
     >
       {keyVal}

@@ -9,7 +9,7 @@ const GameOver = () => {
   const { gameOver, correctWord, currAttempt, theme } = useContext(AppContext);
 
   return (
-    <div className={classes.gameOver} id={classes[theme]}>
+    <div className={classes.gameOver} id={classes[theme.theme]}>
       <h3>{gameOver.guessedRight ? 'You Guessed Right!' : 'You failed!'}</h3>
       <h2>{`Correct Word Was: ${correctWord.toUpperCase()}`}</h2>
       <h3>

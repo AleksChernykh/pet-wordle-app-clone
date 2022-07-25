@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useReducer } from 'react';
 
 import Board from './components/Board';
 import Keyboard from './components/Keyboard';
@@ -12,13 +12,23 @@ import './App.css';
 
 export const AppContext = createContext();
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'absentLetter':
+      return { ...state, absent: [...state.absent, action.payload] };
+    case 'presentLetter':
+      return { ...state, present: [...state.present, action.payload] };
+    case 'correctLetter':
+      return { ...state, correct: [...state.correct, action.payload] };
+    default:
+      return state;
+  }
+};
+
 function App() {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, currPos: 0 });
   const [newWordsSet, setNewWordsSet] = useState(new Set());
-  const [absentLetters, setAbsentLetters] = useState([]);
-  const [presentLetters, setPresentLetters] = useState([]);
-  const [correctLetters, setCorrectLetters] = useState([]);
   const [correctWord, setCorrectWord] = useState('');
   const [gameOver, setGameOver] = useState({
     gameOver: false,
@@ -26,30 +36,25 @@ function App() {
   });
   const [modalActive, setModalActive] = useState(false);
   const [notAWord, setNotAWord] = useState(false);
-  const [theme, setTheme] = useState('light');
-  const [switchChecked, setSwitchChecked] = useState(false);
+  const [theme, setTheme] = useState({ theme: 'light', switchOn: false });
+  const [letterCondition, dispatchLetterCondition] = useReducer(reducer, {
+    absent: [],
+    present: [],
+    correct: [],
+  });
 
   useEffect(() => {
     getWordsSet().then((words) => {
       setNewWordsSet(words.wordsSet);
       setCorrectWord(words.todaysWord);
     });
-  }, []);
-
-  useEffect(() => {
-    const themeData = window.localStorage.getItem('WORDLE_THEME');
-    if (themeData !== null) setTheme(JSON.parse(themeData));
-    const switchData = window.localStorage.getItem('WORDLE_SWITCH_CHECKED');
-    if (switchData !== null) setSwitchChecked(JSON.parse(switchData));
+    const data = window.localStorage.getItem('WORDLE_THEME');
+    if (data !== null) setTheme(JSON.parse(data));
   }, []);
 
   useEffect(() => {
     window.localStorage.setItem('WORDLE_THEME', JSON.stringify(theme));
-    window.localStorage.setItem(
-      'WORDLE_SWITCH_CHECKED',
-      JSON.stringify(switchChecked)
-    );
-  }, [theme, switchChecked]);
+  }, [theme]);
 
   const onSelectLetter = (keyVal) => {
     if (currAttempt.currPos > 4) return;
@@ -92,8 +97,13 @@ function App() {
   };
 
   const themeToggle = () => {
-    setTheme((curr) => (curr === 'light' ? 'dark' : 'light'));
-    setSwitchChecked((curr) => (curr === true ? false : true));
+    setTheme((curr) => {
+      if (curr.theme === 'light' && curr.switchOn === false) {
+        return { theme: 'dark', switchOn: true };
+      } else {
+        return { theme: 'light', switchOn: false };
+      }
+    });
   };
 
   const providerValues = {
@@ -101,12 +111,8 @@ function App() {
     setBoard,
     currAttempt,
     setCurrAttempt,
-    absentLetters,
-    setAbsentLetters,
-    presentLetters,
-    setPresentLetters,
-    correctLetters,
-    setCorrectLetters,
+    letterCondition,
+    dispatchLetterCondition,
     gameOver,
     setGameOver,
     onSelectLetter,
@@ -119,12 +125,11 @@ function App() {
     setNotAWord,
     theme,
     themeToggle,
-    switchChecked,
   };
 
   return (
     <AppContext.Provider value={providerValues}>
-      <div className='App' id={theme}>
+      <div className='App' id={theme.theme}>
         <Nav />
         <div className='game'>
           <Board />

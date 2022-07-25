@@ -6,14 +6,8 @@ import Key from './Key';
 import classes from './Keyboard.module.css';
 
 const Keyboard = () => {
-  const {
-    onSelectLetter,
-    onDelete,
-    onEnter,
-    absentLetters,
-    presentLetters,
-    correctLetters,
-  } = useContext(AppContext);
+  const { onSelectLetter, onDelete, onEnter, letterCondition } =
+    useContext(AppContext);
 
   const keys1 = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'];
   const keys2 = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'];
@@ -51,9 +45,9 @@ const Keyboard = () => {
         {keys1.map((key) => (
           <Key
             keyVal={key}
-            absent={absentLetters.includes(key)}
-            present={presentLetters.includes(key)}
-            correct={correctLetters.includes(key)}
+            absent={letterCondition.absent.includes(key)}
+            present={letterCondition.present.includes(key)}
+            correct={letterCondition.correct.includes(key)}
           />
         ))}
       </div>
@@ -61,9 +55,9 @@ const Keyboard = () => {
         {keys2.map((key) => (
           <Key
             keyVal={key}
-            absent={absentLetters.includes(key)}
-            present={presentLetters.includes(key)}
-            correct={correctLetters.includes(key)}
+            absent={letterCondition.absent.includes(key)}
+            present={letterCondition.present.includes(key)}
+            correct={letterCondition.correct.includes(key)}
           />
         ))}
       </div>
@@ -72,9 +66,9 @@ const Keyboard = () => {
         {keys3.map((key) => (
           <Key
             keyVal={key}
-            absent={absentLetters.includes(key)}
-            present={presentLetters.includes(key)}
-            correct={correctLetters.includes(key)}
+            absent={letterCondition.absent.includes(key)}
+            present={letterCondition.present.includes(key)}
+            correct={letterCondition.correct.includes(key)}
           />
         ))}
         <Key keyVal={'delete'} bigKey />

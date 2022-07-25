@@ -8,7 +8,7 @@ const NotAWordModal = () => {
   const { theme } = useContext(AppContext);
 
   return (
-    <div className={classes.not_word} id={classes[theme]}>
+    <div className={classes.not_word} id={classes[theme.theme]}>
       Not in word list
     </div>
   );

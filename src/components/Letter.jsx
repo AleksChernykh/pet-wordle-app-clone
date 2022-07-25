@@ -9,9 +9,7 @@ const Letter = ({ letterPos, attemptVal }) => {
     board,
     correctWord,
     currAttempt,
-    setAbsentLetters,
-    setPresentLetters,
-    setCorrectLetters,
+    dispatchLetterCondition,
     notAWord,
     theme,
   } = useContext(AppContext);
@@ -30,18 +28,18 @@ const Letter = ({ letterPos, attemptVal }) => {
 
   useEffect(() => {
     if (letter !== '' && !correct && !present) {
-      setAbsentLetters((prev) => [...prev, letter]);
+      dispatchLetterCondition({ type: 'absentLetter', payload: letter });
     } else if (letter !== '' && !correct) {
-      setPresentLetters((prev) => [...prev, letter]);
+      dispatchLetterCondition({ type: 'presentLetter', payload: letter });
     } else {
-      setCorrectLetters((prev) => [...prev, letter]);
+      dispatchLetterCondition({ type: 'correctLetter', payload: letter });
     }
   }, [currAttempt.attempt]);
 
   return (
     <div
       className={`${classes.letter} ${letterState} ${letterShake}`}
-      id={classes[theme]}
+      id={classes[theme.theme]}
     >
       {letter}
     </div>
