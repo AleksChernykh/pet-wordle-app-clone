@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState, useReducer } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 import Board from './components/Board';
 import Keyboard from './components/Keyboard';
@@ -6,24 +6,12 @@ import GameOver from './components/GameOver';
 import Nav from './components/Nav';
 import HelperModal from './components/modal/HelperModal';
 import NotAWordModal from './components/modal/NotAWordModal';
+import { LetterContextProvider } from './components/store/letter-context';
 import { boardDefault, getWordsSet } from './Helpers';
 
 import './App.css';
 
 export const AppContext = createContext();
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'absentLetter':
-      return { ...state, absent: [...state.absent, action.payload] };
-    case 'presentLetter':
-      return { ...state, present: [...state.present, action.payload] };
-    case 'correctLetter':
-      return { ...state, correct: [...state.correct, action.payload] };
-    default:
-      return state;
-  }
-};
 
 function App() {
   const [board, setBoard] = useState(boardDefault);
@@ -37,11 +25,6 @@ function App() {
   const [modalActive, setModalActive] = useState(false);
   const [notAWord, setNotAWord] = useState(false);
   const [theme, setTheme] = useState({ theme: 'light', switchOn: false });
-  const [letterCondition, dispatchLetterCondition] = useReducer(reducer, {
-    absent: [],
-    present: [],
-    correct: [],
-  });
 
   useEffect(() => {
     getWordsSet().then((words) => {
@@ -111,8 +94,6 @@ function App() {
     setBoard,
     currAttempt,
     setCurrAttempt,
-    letterCondition,
-    dispatchLetterCondition,
     gameOver,
     setGameOver,
     onSelectLetter,
@@ -131,10 +112,12 @@ function App() {
     <AppContext.Provider value={providerValues}>
       <div className='App' id={theme.theme}>
         <Nav />
-        <div className='game'>
-          <Board />
-          {gameOver.gameOver ? <GameOver /> : <Keyboard />}
-        </div>
+        <LetterContextProvider>
+          <div className='game'>
+            <Board />
+            {gameOver.gameOver ? <GameOver /> : <Keyboard />}
+          </div>
+        </LetterContextProvider>
         {notAWord && <NotAWordModal />}
         <HelperModal />
       </div>

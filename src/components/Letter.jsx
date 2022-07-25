@@ -1,18 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 
 import { AppContext } from '../App';
+import { LetterContext } from './store/letter-context';
 
 import classes from './Letter.module.css';
 
 const Letter = ({ letterPos, attemptVal }) => {
-  const {
-    board,
-    correctWord,
-    currAttempt,
-    dispatchLetterCondition,
-    notAWord,
-    theme,
-  } = useContext(AppContext);
+  const { board, correctWord, currAttempt, notAWord, theme } =
+    useContext(AppContext);
+  const { dispatchLetterCondition } = useContext(LetterContext);
 
   const letter = board[attemptVal][letterPos];
 

@@ -1,13 +1,14 @@
 import React, { useEffect, useCallback, useContext } from 'react';
 
 import { AppContext } from '../App';
+import { LetterContext } from './store/letter-context';
 import Key from './Key';
 
 import classes from './Keyboard.module.css';
 
 const Keyboard = () => {
-  const { onSelectLetter, onDelete, onEnter, letterCondition } =
-    useContext(AppContext);
+  const { onSelectLetter, onDelete, onEnter } = useContext(AppContext);
+  const { letterCondition } = useContext(LetterContext);
 
   const keys1 = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'];
   const keys2 = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'];
