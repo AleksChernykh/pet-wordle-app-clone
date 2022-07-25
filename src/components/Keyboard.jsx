@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useContext } from 'react';
 
 import { AppContext } from '../App';
-import { LetterContext } from './store/letter-context';
+import { LetterContext } from '../store/letter-context';
 import Key from './Key';
 
 import classes from './Keyboard.module.css';

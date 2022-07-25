@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
-import { AppContext } from '../../App';
-import NewGameBtn from '../NewGameBtn';
+import { AppContext } from '../App';
+import NewGameBtn from '../components/NewGameBtn';
 
 import classes from './HelperModal.module.css';
 

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 
 import { AppContext } from '../App';
-import { LetterContext } from './store/letter-context';
+import { LetterContext } from '../store/letter-context';
 
 import classes from './Letter.module.css';
 

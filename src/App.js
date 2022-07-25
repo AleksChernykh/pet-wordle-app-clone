@@ -4,9 +4,9 @@ import Board from './components/Board';
 import Keyboard from './components/Keyboard';
 import GameOver from './components/GameOver';
 import Nav from './components/Nav';
-import HelperModal from './components/modal/HelperModal';
-import NotAWordModal from './components/modal/NotAWordModal';
-import { LetterContextProvider } from './components/store/letter-context';
+import HelperModal from './modal/HelperModal';
+import NotAWordModal from './modal/NotAWordModal';
+import { LetterContextProvider } from './store/letter-context';
 import { boardDefault, getWordsSet } from './Helpers';
 
 import './App.css';
